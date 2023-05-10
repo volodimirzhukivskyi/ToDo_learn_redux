@@ -6,7 +6,6 @@ import {Todo} from "./components/Todo";
 function App() {
     const [todos, setTodos] = useState([{id: 1, name: "Petya"}])
 
-
     return (
         <div className="App">
             <AddToDo setTodos={setTodos}/>
