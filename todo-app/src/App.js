@@ -1,16 +1,19 @@
 import './App.css';
-import {AddToDo} from "./components/AppToDo";
-import {useState} from "react";
-import {Todo} from "./components/Todo";
+import TodoContainer from "./redux/containers/TodoContainer";
+import AddTodoContainer from "./redux/containers/AddTodoContainer";
+import { useSelector } from 'react-redux';
+import { getTodos } from './redux/selectors/selectors';
 
 function App() {
-    const [todos, setTodos] = useState([{id: 1, name: "Petya"}])
+    const todos= useSelector(getTodos)
 
+
+console.log(todos);
     return (
         <div className="App">
-            <AddToDo setTodos={setTodos}/>
+            <AddTodoContainer />
             {todos?.map((todo) => {
-                return <Todo setTodos={setTodos} todo={todo}/>
+                return <TodoContainer key={todo.id} todo={todo}/>
             })}
         </div>
     );

@@ -1,26 +1,31 @@
-import React from 'react';
-import {useState} from "react"
+import React from "react";
+import { useState } from "react";
 
-export function AddToDo({setTodos}) {
-    const [value, setValue] = useState('');
-
-
-    const addToDo =()=> {
-        const newToDo = {
-            id:new Date().toISOString(),
-            name:value
-        }
-        if(value.trim()!==""){
-            setTodos(prev => [...prev, newToDo])
-            setValue("")
-        }
-
+export function AddToDo(props) {
+  const { addToDo } = props;
+  const [value, setValue] = useState("");
+  const addToDoFunc = (value) => {
+    const newToDo = {
+      id: new Date().toISOString(),
+      name: value,
+      completed: false,
+    };
+    if (value.trim() !== "") {
+      addToDo(newToDo);
+      setValue("");
     }
+  };
 
-    return (
-        <>
-            <input value={value} onChange={(e) => {setValue(e.target.value)}} type='text' />
-            <button onClick={addToDo}>Add Todo</button>
-        </>
-    );
+  return (
+    <>
+      <input
+        value={value}
+        onChange={(e) => {
+          setValue(e.target.value);
+        }}
+        type="text"
+      />
+      <button onClick={() => addToDoFunc(value)}>Add Todo</button>
+    </>
+  );
 }
