@@ -1,10 +1,10 @@
-import { ADD_TODO, CHANGE_COMPLETED, REMOVE_TODO } from "../costants/constants";
+import { ADD_TODO, CHANGE_COMPLETED, FETCH_DATA, REMOVE_TODO } from "../costants/constants";
 
 const INITIAL_STATE = {
   todos: [],
 };
 
-export default rootReducer = (state = INITIAL_STATE, action) => {
+ export const rootReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ADD_TODO:
       return { ...state, todos: [...state.todos, action.payload] };
@@ -21,6 +21,8 @@ return {
             return {...todo,completed:!todo.completed}
         })
 }
+case FETCH_DATA:
+return {...state,todos:[...action.payload]}
     default:
       return state;
   }

@@ -1,9 +1,8 @@
 import { applyMiddleware, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import rootReducer from "../reducer/reducer"
-import thunkMiddleware from 'redux-thunk'
-
-import loggerMiddleware from 'redux-logger'
+import thunkMiddleware from 'redux-thunk';
+import loggerMiddleware from 'redux-logger';
+import {rootReducer } from "../reducer/reducer.js"
 
 export default function configureStore(preloadedState) {
   const middlewares = [thunkMiddleware, loggerMiddleware]
@@ -14,7 +13,7 @@ export default function configureStore(preloadedState) {
   const store = createStore(rootReducer, preloadedState, composedEnhancers)
 
   if (process.env.NODE_ENV !== 'production' && module.hot) {
-    module.hot.accept('../reducer', () => store.replaceReducer(rootReducer))
+    module.hot.accept('../reducer/reducer.js', () => store.replaceReducer(rootReducer))
   }
 
   return store

@@ -1,22 +1,27 @@
 import './App.css';
-import TodoContainer from "./redux/containers/TodoContainer";
-import AddTodoContainer from "./redux/containers/AddTodoContainer";
-import { useSelector } from 'react-redux';
+import TodoContainer from './redux/containers/TodoContainer';
+import AddTodoContainer from './redux/containers/AddTodoContainer';
+import { useDispatch, useSelector } from 'react-redux';
 import { getTodos } from './redux/selectors/selectors';
+import { useEffect } from 'react';
+import { fetchTodos } from './redux/actions/actions';
 
 function App() {
-    const todos= useSelector(getTodos)
+  const todos = useSelector(getTodos);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchTodos());
+  }, []);
 
 
-console.log(todos);
-    return (
-        <div className="App">
-            <AddTodoContainer />
-            {todos?.map((todo) => {
-                return <TodoContainer key={todo.id} todo={todo}/>
-            })}
-        </div>
-    );
+  return (
+    <div className="App">
+      <AddTodoContainer />
+      {todos?.map((todo) => {
+        return <TodoContainer key={todo.id} todo={todo} />;
+      })}
+    </div>
+  );
 }
 
 export default App;

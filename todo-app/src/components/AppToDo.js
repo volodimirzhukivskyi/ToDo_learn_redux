@@ -7,7 +7,7 @@ export function AddToDo(props) {
   const addToDoFunc = (value) => {
     const newToDo = {
       id: new Date().toISOString(),
-      name: value,
+      title: value,
       completed: false,
     };
     if (value.trim() !== "") {
