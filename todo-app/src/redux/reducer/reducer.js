@@ -4,7 +4,7 @@ const INITIAL_STATE = {
   todos: [],
 };
 
-export const reducer = (state = INITIAL_STATE, action) => {
+export default rootReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ADD_TODO:
       return { ...state, todos: [...state.todos, action.payload] };
